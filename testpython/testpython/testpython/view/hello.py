@@ -15,11 +15,12 @@ def car(request, s):
 def home(request):
     html = "<html><body>It is now %d.</body></html>" % 1
     return HttpResponse(html)
-def say():
-	return HttpResponse(get_expenses())
+def say(request):
+	return HttpResponse(get_expenses(), content_type="application/json")
 def template(request):
-	t = Template("hello $name")
+	os.chdir("testpython")
+	print os.listdir(os.curdir)
+	t = Template(open("text.txt"))
 	d = dict(name="Ivan")
-	print(say())
 	return HttpResponse(t.substitute({"name": "Ivan"}))
 	
