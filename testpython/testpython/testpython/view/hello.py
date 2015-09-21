@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from string import Template
-import datetime, os
+from django.template import Template, Context
+from django.template.loader import get_template
+from django.shortcuts import render
 from testpython.model.db import get_expenses
 class Car:
 	def __init__(self, color, speed):
@@ -17,10 +18,7 @@ def home(request):
     return HttpResponse(html)
 def say(request):
 	return HttpResponse(get_expenses(), content_type="application/json")
-def template(request):
-	os.chdir("testpython")
-	print os.listdir(os.curdir)
-	t = Template(open("text.txt"))
-	d = dict(name="Ivan")
-	return HttpResponse(t.substitute({"name": "Ivan"}))
+def home(request):
+	d = dict(name="Smith")
+	return render(request, "home.html", d)
 	
