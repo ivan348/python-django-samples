@@ -13,9 +13,8 @@ class Car:
 def car(request, s):
 	c = Car("green", s)
 	return HttpResponse(c.getInfo())
-def home(request):
-    html = "<html><body>It is now %d.</body></html>" % 1
-    return HttpResponse(html)
+def settings(request):
+    return render(request, "settings.html")
 def say(request):
 	return HttpResponse(get_expenses(), content_type="application/json")
 def home(request):
